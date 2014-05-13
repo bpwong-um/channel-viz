@@ -322,7 +322,14 @@
 							$('#feed-' + data.id + ' .map').addClass('hidden');
 					}
 
-					$('#feed-' + data.id + ' .duration-hour').click(function() {
+
+					$('#feed-' + data.id + ' .duration-1hour').click(function() {
+						$('#loadingData').foundation('reveal', 'open');
+						updateFeeds(data.id, thisFeedDatastreams, '1hour', 0);
+						return false;
+					});
+
+					$('#feed-' + data.id + ' .duration-6hour').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '6hours', 30);
 						return false;
@@ -343,12 +350,6 @@
 					$('#feed-' + data.id + ' .duration-month').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '1month', 1800);
-						return false;
-					});
-
-					$('#feed-' + data.id + ' .duration-90').click(function() {
-						$('#loadingData').foundation('reveal', 'open');
-						updateFeeds(data.id, thisFeedDatastreams, '90days', 10800);
 						return false;
 					});
 
