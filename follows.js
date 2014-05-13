@@ -83,11 +83,12 @@
 					var updated = new Date;
 					updated = updated.parseISO(datastream.at);
 					var diff = null;
-					if(duration == '6hours') diff = 21600000;
+					if(duration == '30minutes') diff = 1800000; 
+					 if(duration == '6hours') diff = 21600000;
 					 if(duration == '1day') diff = 86400000;
 					 if(duration == '1week') diff = 604800000;
 					 if(duration == '1month') diff = 2628000000;
-					 if(duration == '90days') diff = 7884000000;
+					 
 					then.setTime(now.getTime() - diff);
 					if(updated.getTime() > then.getTime()) {
 						if(datastreamIds && datastreamIds != '' && datastreamIds.indexOf(datastream.id) >= 0) {
@@ -323,9 +324,9 @@
 					}
 
 
-					$('#feed-' + data.id + ' .duration-1hour').click(function() {
+					$('#feed-' + data.id + ' .duration-30min').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
-						updateFeeds(data.id, thisFeedDatastreams, '1hour', 0);
+						updateFeeds(data.id, thisFeedDatastreams, '30minutes', 0);
 						return false;
 					});
 
