@@ -109,6 +109,19 @@
 		</div>
 	</div>
 	<!-- Page Content -->
+	<form name="DropDown">
+	    <select name="minutes"> 
+			<option value="null" selected>Please select</option>
+			<option value="-1">Off</option>
+			<option value="0">Now</option>
+			<option value="1">1 minute</option>
+			<option value="2">2 minutes</option>
+			<option value="5">5 minutes</option>
+			<option value="10">10 minutes</option>
+		</select>
+
+		<input type="button" value="Click to Set Sample" onClick="updateSample()">
+	</form>		
 	<div id="xivelyContent" style="position: relative;">
 		<a href="https://github.com/xively/channel-viz" class="hide-for-medium hide-for-small"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 		<div id="welcome">
@@ -349,19 +362,6 @@
 			</div>
 		</div>
 	</div>
-	<form name="DropDown">
-	    <select name="minutes"> 
-			<option value="null" selected>Please select</option>
-			<option value="-1">Off</option>
-			<option value="0">Now</option>
-			<option value="1">1 minute</option>
-			<option value="2">2 minutes</option>
-			<option value="5">5 minutes</option>
-			<option value="10">10 minutes</option>
-		</select>
-
-		<input type="button" value="Click to Set Sample" onClick="updateSample()">
-	</form>	
 	<!-- Footer -->
 	<div style="background: #0D1B23;">
 		<div style="padding: 15px;">1
