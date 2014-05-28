@@ -233,19 +233,6 @@
 			</div>
 		</div>
 		<div id="feeds">
-			<form name="DropDown">
-			    <select name="minutes"> 
-					<option value="null" selected>Please select</option>
-					<option value="-1">Off</option>
-					<option value="0">Now</option>
-					<option value="1">1 minute</option>
-					<option value="2">2 minutes</option>
-					<option value="5">5 minutes</option>
-					<option value="10">10 minutes</option>
-				</select>
-		
-				<input type="button" value="Click to change!" onClick="updateSample()">
-			</form>	
 			<div class="feed hidden" id="exampleFeedNotFound" style="line-height: 25px; padding-top: 25px;">
 				<div class="row title">
 					<div class="large-12 columns">
@@ -330,6 +317,25 @@
 							<a href="#" class="small button secondary duration-day">Day</a>
 							<a href="#" class="small button secondary duration-week">Week</a>
 							<a href="#" class="small button secondary duration-month">Month</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<div class="button-group" style="fload: left;">
+							<form name="DropDown">
+							    <select name="minutes"> 
+									<option value="null" selected>Please select</option>
+									<option value="-1">Off</option>
+									<option value="0">Now</option>
+									<option value="1">1 minute</option>
+									<option value="2">2 minutes</option>
+									<option value="5">5 minutes</option>
+									<option value="10">10 minutes</option>
+								</select>
+						
+								<input type="button" value="Click to change!" onClick="updateSample()">
+							</form>	
 						</div>
 					</div>
 				</div>
