@@ -76,22 +76,22 @@
 		</div>
 	</div>
 	<!-- Form -->
-	
+	<form name="DropDown">
+	    <select name="minutes"> 
+			<option value="null" selected>Please select</option>
+			<option value="-1">Off</option>
+			<option value="0">Now</option>
+			<option value="1">1 minute</option>
+			<option value="2">2 minutes</option>
+			<option value="5">5 minutes</option>
+			<option value="10">10 minutes</option>
+		</select>
+
+		<input type="button" value="Click to change!" onClick="updateSample()">
+	</form>	
 	<div id="form" style="background: #F0F0F0; border-bottom: 1px solid #CCC; padding: 25px; padding-bottom: 15px;">
 		
-		<form name="DropDown">
-		    <select name="minutes"> 
-				<option value="null" selected>Please select</option>
-				<option value="-1">Off</option>
-				<option value="0">Now</option>
-				<option value="1">1 minute</option>
-				<option value="2">2 minutes</option>
-				<option value="5">5 minutes</option>
-				<option value="10">10 minutes</option>
-			</select>
-	
-			<input type="button" value="Click to change!" onClick="updateSample()">
-		</form>
+
 		<div class="row">
 			<div class="large-5 columns">
 				<div class="row collapse">
@@ -404,7 +404,7 @@
 
   function updateSample()
   {
-  	var number = form.DropDown.minutes.value;
+  	var number = document.DropDown.minutes.value;
   	if (number > -9999) {
 	  	if (number > 0) {
 	  		alert("sampling in " + number + " minute(s)"); 
