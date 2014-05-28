@@ -320,10 +320,10 @@
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<div class="pull-down" style="float: right;">
+						<div class="pull-down">
 							<form name="DropDown">
 							    <select name="minutes"> 
-									<option value="" selected>Please select</option>
+									<option value="null" selected>Please select</option>
 									<option value="-1">Off</option>
 									<option value="0">Now</option>
 									<option value="1">1 minute</option>
@@ -369,7 +369,7 @@
 
 	<!-- Footer -->
 	<div style="background: #0D1B23;">
-		<div style="padding: 15px;">
+		<div style="padding: 15px;">1
 			<div class="row">
 				<div class="large-8 columns" style="color: rgb(81, 98, 111); padding-top: 10px; padding-bottom: 10px;">
 					<small>
@@ -407,7 +407,21 @@
 
   function updateSample()
   {
-  	var number = document.DropDown.minutes.selectedIndex;
-  	xively.datastream.update("966630999", "sample", {current_value: number}, function(data){alert("sampling in " + number + " minute(s)"); })
+  	var number = document.DropDown.minutes.value;
+  	if (number > -9999) {
+	  	if (number > 0) {
+	  		alert("sampling in " + number + " minute(s)"); 
+	  	}
+	  	else if (number == 0) {
+	  		alert("sampling ASAP"); 
+	  	}
+	  	else {
+	  		number = -1;
+	  		alert("sampling off"); 
+	  	}
+	
+	  	xively.datastream.update("966630999", "sample", {current_value: number}, function(data){})  		
+  	}
+
   }
 </script>
