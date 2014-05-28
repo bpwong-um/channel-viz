@@ -318,21 +318,21 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="row">
-						<form name="DropDown">
-						    <select name="minutes"> 
-								<option value="null" selected>Please select</option>
-								<option value="-1">Off</option>
-								<option value="0">Now</option>
-								<option value="1">1 minute</option>
-								<option value="2">2 minutes</option>
-								<option value="5">5 minutes</option>
-								<option value="10">10 minutes</option>
-							</select>
-					
-							<input type="button" value="Click to change!" onClick="updateSample()">
-						</form>
-					</div>					
+					<form name="DropDown">
+					    <select name="minutes"> 
+							<option value="null" selected>Please select</option>
+							<option value="-1">Off</option>
+							<option value="0">Now</option>
+							<option value="1">1 minute</option>
+							<option value="2">2 minutes</option>
+							<option value="5">5 minutes</option>
+							<option value="10">10 minutes</option>
+						</select>
+				
+						<input type="button" value="Click to change!" onClick="updateSample()">
+					</form>
+				</div>				
+				<div class="row">
 					<div class="large-12 columns">
 						<div class="datastreams" style="padding-bottom: 15px;">
 							<div class="datastream hidden">
@@ -393,30 +393,31 @@
 
 	<script src="js/foundation.min.js"></script>
 	<script src="follows.js"></script>
+	<script>
+	  xively.setKey( "7inkCfgjLCcSq6t2E3RC7OnmZykBUXEU8Yv7K56c7JYUOxdn" );
+	
+	  function updateSample()
+	  {
+	  	var number = document.DropDown.minutes.value;
+	  	if (number > -9999) {
+		  	if (number > 0) {
+		  		alert("sampling in " + number + " minute(s)"); 
+		  	}
+		  	else if (number == 0) {
+		  		alert("sampling ASAP"); 
+		  	}
+		  	else {
+		  		number = -1;
+		  		alert("sampling off"); 
+		  	}
+		
+		  	xively.datastream.update("966630999", "sample", {current_value: number}, function(data){})  		
+	  	}
+	
+	  }
+	</script>
+
 
 </body>
 </html>
 
-<script>
-  xively.setKey( "7inkCfgjLCcSq6t2E3RC7OnmZykBUXEU8Yv7K56c7JYUOxdn" );
-
-  function updateSample()
-  {
-  	var number = document.DropDown.minutes.value;
-  	if (number > -9999) {
-	  	if (number > 0) {
-	  		alert("sampling in " + number + " minute(s)"); 
-	  	}
-	  	else if (number == 0) {
-	  		alert("sampling ASAP"); 
-	  	}
-	  	else {
-	  		number = -1;
-	  		alert("sampling off"); 
-	  	}
-	
-	  	xively.datastream.update("966630999", "sample", {current_value: number}, function(data){})  		
-  	}
-
-  }
-</script>
