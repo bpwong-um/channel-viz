@@ -438,6 +438,12 @@
 
   }
   
+
+</script>
+
+<script>
+  xively.setKey( "7inkCfgjLCcSq6t2E3RC7OnmZykBUXEU8Yv7K56c7JYUOxdn" );	
+	
   function updateTrigger()
   {
   	var toggle = document.DropDownTrigger.trigger.value;
@@ -449,5 +455,5 @@
 
   	xively.datastream.update("966630999", "trigger_sampler", {current_value: toggle}, function(data){})  		
 
-  }
+  }	
 </script>
