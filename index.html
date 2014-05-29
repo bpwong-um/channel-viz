@@ -238,19 +238,27 @@
 			<div>
 				<div class="row">
 					<div class="large-12 columns">
-						<form name="DropDown">
+						<form name="DropDownPeriod">
 						    <select name="minutes"> 
-								<option value="null" selected>Please select</option>
-								<option value="-1">Off</option>
-								<option value="0">Now</option>
+								<option value="null" selected>Please select sample period</option>
 								<option value="1">1 minute</option>
 								<option value="2">2 minutes</option>
+								<option value="2">3 minutes</option>
 								<option value="5">5 minutes</option>
 								<option value="10">10 minutes</option>
 							</select>
 					
-							<input type="button" value="Click to Set Sample" onClick="updateSample()">
-						</form>	
+							<input type="button" value="Click to Set Sample Period" onClick="updatePeriod()">
+						</form>
+						<form name="DropDownTrigger">
+						    <select name="trigger"> 
+								<option value="null" selected>Take automated sample..</option>
+								<option value="-1">No</option>
+								<option value="1">Yes</option>
+							</select>
+					
+							<input type="button" value="Update Automated Sampler Status" onClick="updateTrigger()">
+						</form>						
 					</div>
 				</div>
 			</div>		
@@ -410,9 +418,9 @@
 <script>
   xively.setKey( "7inkCfgjLCcSq6t2E3RC7OnmZykBUXEU8Yv7K56c7JYUOxdn" );
 
-  function updateSample()
+  function updatePeriod()
   {
-  	var number = document.DropDown.minutes.value;
+  	var number = document.DropDownPeriod.minutes.value;
   	if (number > -9999) {
 	  	if (number > 0) {
 	  		alert("sampling in " + number + " minute(s)"); 
@@ -425,8 +433,21 @@
 	  		alert("sampling off"); 
 	  	}
 	
-	  	xively.datastream.update("966630999", "sample", {current_value: number}, function(data){})  		
+	  	xively.datastream.update("966630999", "t_sample", {current_value: number}, function(data){})  		
   	}
+
+  }
+  
+  function updatePeriod()
+  {
+  	var toggle = document.DropDownTrigger.trigger.value;
+  	if (toggle < 0) {
+  		alert("Automated Sample will not be taken."); 
+  	else {
+  		alert("Automated Sample will be taken at next sample event."); 
+  	}
+
+  	xively.datastream.update("966630999", "trigger_sampler", {current_value: toggle}, function(data){})  		
 
   }
 </script>
