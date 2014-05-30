@@ -440,11 +440,11 @@
   function updateTrigger()
   {
   	var toggle = document.DropDownTrigger.trigger.value;
-  	if (toggle < 0) {
-  		alert("Automated Sample will not be taken."); 
+  	if (toggle > 0) {
+  		alert("Automated Sample will be taken at next sample event."); 
   	} 
   	else {
-  		alert("Automated Sample will be taken at next sample event."); 
+  		alert("Automated Sample will not be taken."); 
   	}
 
   	xively.datastream.update("966630999", "trigger_sampler", {current_value: toggle}, function(data){})  		
