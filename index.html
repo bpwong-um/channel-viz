@@ -241,7 +241,6 @@
 						<form name="DropDownPeriod">
 						    <select name="minutes"> 
 								<option value="null" selected>Please select sample period</option>
-								<option value="1">1 minute</option>
 								<option value="2">2 minutes</option>
 								<option value="5">5 minutes</option>
 								<option value="10">10 minutes</option>
@@ -415,39 +414,69 @@
 </html>
 
 <script>
-  xively.setKey( "7inkCfgjLCcSq6t2E3RC7OnmZykBUXEU8Yv7K56c7JYUOxdn" );
+  	
+	var feedID = 966630999;
 
-  function updatePeriod()
-  {
-  	var number = document.DropDownPeriod.minutes.value;
-  	if (number > -9999) {
-	  	if (number > 0) {
-	  		alert("sampling in " + number + " minute(s)"); 
-	  	}
-	  	else if (number == 0) {
-	  		alert("sampling ASAP"); 
-	  	}
-	  	else {
-	  		number = -1;
-	  		alert("sampling off"); 
-	  	}
-	
-	  	xively.datastream.update("966630999", "t_sample", {current_value: number}, function(data){})  		
+	function updateTrigger()
+	{
+		xively.setKey( "FeQZrQRD7JxwGQP7fsJFkpNRauohGWl9N10BjU6xd3PlEquw" );  // key to r/w lock channel
+		
+	  	xively.datastream.get(feedID, "lock", function(datastream)
+		{
+  			var lock = datastream["current_value"];
+		  	
+		  	if (lock >0) 
+		  	{
+		  		alert("Resource is currently locked!")
+		  	}
+		  	else
+		  	{	
+		  		var number = document.DropDownTrigger.minutes.value;
+			  	if (number < 0) 
+			  	{
+			  		alert("Automated Sample will not be taken."); 
+			  	}
+			  	else 
+			  	{
+			  		alert("Automated Sample will be taken at next sample event."); 
+			  	}
+
+				xively.setKey( "dkIsZjimcfu3NhHJ96G6RDHtexP0wnJ3CIq5NXfq5icFYwfX" );  // key to r/w trigger_sample channel
+			  	xively.datastream.update(feedID, "trigger_sampler", {current_value: number}, function(data){})  		
+		  	}
+		})
   	}
 
-  }
   
-  function updateTrigger()
-  {
-  	var toggle = document.DropDownTrigger.trigger.value;
-  	if (toggle > 0) {
-  		alert("Automated Sample will be taken at next sample event."); 
-  	} 
-  	else {
-  		alert("Automated Sample will not be taken."); 
-  	}
+	function updatePeriod()
+	{
+	  	xively.setKey( "N7zGgy58oNgonBxZHouICeSyJ9Xck2RaPLR91NMXNtKCOznu" ); // key to r/w t_sample channel
+	  	var number = document.DropDown.minutes.value;
+	  	
+	  	if (number > -9999) 
+	  	{
+		  	if (number > 0) 
+		  	{
+		  		alert("sampling in " + number + " minute(s)"); 
+		  	}
+		  	else if (number == 0) 
+		  	{
+		  		alert("sampling ASAP"); 
+		  	}
+		  	else 
+		  	{
+		  		number = -1;
+		  		alert("sampling off"); 
+		  	}
+		
+		  	xively.datastream.update(feedID, "t_sample", {current_value: number}, function(data){})  		
+	  	}
+	}
 
-  	xively.datastream.update("966630999", "trigger_sampler", {current_value: toggle}, function(data){})  		
+	function getLock()
+	{
+		xively.setKey( "FeQZrQRD7JxwGQP7fsJFkpNRauohGWl9N10BjU6xd3PlEquw" ); // key to r/w lock channel
+		xively.datastream.get(feedID, "lock", function(datastream){x = datastream["current_value"];alert(x)})
+	}
 
-  }	
 </script>
