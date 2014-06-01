@@ -251,8 +251,8 @@
 						<form name="DropDownTrigger">
 						    <select name="trigger"> 
 								<option value="null" selected>Take automated sample..</option>
-								<option value="0">No</option>
 								<option value="1">Yes</option>
+								<option value="0">No</option>
 							</select>
 					
 							<input type="button" value="Update Automated Sampler" onClick="updateTrigger()">
@@ -419,30 +419,33 @@
 
 	function updateTrigger()
 	{
-		xively.setKey( "FeQZrQRD7JxwGQP7fsJFkpNRauohGWl9N10BjU6xd3PlEquw" );  // key to r/w lock channel
-		
-	  	xively.datastream.get(feedID, "lock", function(datastream)
+		xively.setKey( "dkIsZjimcfu3NhHJ96G6RDHtexP0wnJ3CIq5NXfq5icFYwfX" );
+	  	xively.datastream.get(feedID, "trigger_sampler", function(datastream)
+
 		{
-  			var lock = datastream["current_value"];
-		  	
-		  	if (lock >0) 
+  			var trigger = datastream["current_value"];
+		  	var value = document.DropDownTrigger.minutes.value;
+
+		  	if (trigger == 0 && value == 0) 
 		  	{
-		  		alert("Resource is currently locked!")
+		  		alert("Automated Sample trigger already off."); 
+		  	}
+		  	else if (trigger == 1 && value == 1)  
+		  	{
+		  		alert("Automated Sample trigger already on."); 
 		  	}
 		  	else
-		  	{	
-		  		var number = document.DropDownTrigger.minutes.value;
-			  	if (number < 0) 
-			  	{
-			  		alert("Automated Sample will not be taken."); 
-			  	}
-			  	else 
-			  	{
-			  		alert("Automated Sample will be taken at next sample event."); 
-			  	}
+		  	{
+		  		xively.datastream.update(feedID, "trigger_sampler", {current_value: value}, function(data){});  			
 
-				xively.setKey( "dkIsZjimcfu3NhHJ96G6RDHtexP0wnJ3CIq5NXfq5icFYwfX" );  // key to r/w trigger_sample channel
-			  	xively.datastream.update(feedID, "trigger_sampler", {current_value: number}, function(data){})  		
+		  		if (trigger == 0 && value == 1)
+		  		{
+		  			alert("Automated Sample trigger on."); 
+		  		}
+		  		else if(trigger == 1 && value == 0)
+		  		{
+		  			alert("Automated Sample trigger off."); 
+		  		}
 		  	}
 		})
   	}
