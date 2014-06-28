@@ -12,8 +12,8 @@
 		hideForm		= 0;
 	*/
 
-	var defaultKey		= 'uNrFCXLnAa2XKu4IfatmrFXNpLLpoaA8qNrZAgfnH9M8xSYL', // Unique master Xively API key to be used as a default
-		defaultFeeds	= [966630999], // Comma separated array of Xively Feed ID numbers
+	var defaultKey		= 'AFqgp76rNnm754lf4Xq0yczHoReiXDtyWl3bBIkM3m1hnB6H', // Unique master Xively API key to be used as a default
+		defaultFeeds	= [643150575], // Comma separated array of Xively Feed ID numbers
 		applicationName	= 'kLabUM Test', // Replaces Xively logo in the header
 		dataDuration	= '3days', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 0, // Default interval for data to be displayed (in seconds)
