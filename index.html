@@ -256,7 +256,16 @@
 							</select>
 					
 							<input type="button" value="Update Automated Sampler" onClick="updateTrigger()">
-						</form>						
+						</form>
+						<form name="DropDownEnable">
+						    <select name="enable"> 
+								<option value="null" selected>Turn On/Off Algorithm..</option>
+								<option value="1">On</option>
+								<option value="0">Off</option>
+							</select>
+					
+							<input type="button" value="Click to Turn On/Off Algorithm" onClick="updateEnable()">
+						</form>
 					</div>
 				</div>
 			</div>		
@@ -474,6 +483,39 @@
 		
 		  	xively.datastream.update(feedID, "t_sample", {current_value: number}, function(data){})  		
 	  	}
+	}
+
+	function updateEnable()
+	{
+	  	xively.setKey( "rGAI1WFMNsjiFREeXeI7n7LBa9IU3zyCK6cdZIIvwFMBcgcF" ); // key to r/w t_sample channel
+	  	xively.datastream.get(feedID, "enable_sampler", function(datastream)
+
+		{
+  			var enable = datastream["current_value"];
+		  	var value = document.DropDownEnable.enable.value;
+
+		  	if (enable == 0 && value == 0) 
+		  	{
+		  		alert("Sampling Algorithm already off."); 
+		  	}
+		  	else if (enable == 1 && value == 1)  
+		  	{
+		  		alert("Sampling Algorithm already on."); 
+		  	}
+		  	else
+		  	{
+		  		xively.datastream.update(feedID, "enable_sampler", {current_value: value}, function(data){});  			
+
+		  		if (enable == 0 && value == 1)
+		  		{
+		  			alert("Sampling Algorithm on."); 
+		  		}
+		  		else if(enable == 1 && value == 0)
+		  		{
+		  			alert("Sampling Algorithm off."); 
+		  		}
+		  	}
+		})
 	}
 
 	function getLock()
