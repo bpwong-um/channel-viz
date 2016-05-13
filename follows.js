@@ -12,9 +12,9 @@
 		hideForm		= 0;
 	*/
 
-	var defaultKey		= 'AFqgp76rNnm754lf4Xq0yczHoReiXDtyWl3bBIkM3m1hnB6H', // Unique master Xively API key to be used as a default
-		defaultFeeds	= [643150575], // Comma separated array of Xively Feed ID numbers
-		applicationName	= 'kLabUM Test', // Replaces Xively logo in the header
+	var defaultKey		= 'GM0B7c60oQ3J7emJt7piSSkKz4YuixQroURgfd7MKDiZ3emw', // Unique master Xively API key to be used as a default
+		defaultFeeds	= [759708335], // Comma separated array of Xively Feed ID numbers
+		applicationName	= 'Kerkez lab - Storm water nodes', // Replaces Xively logo in the header
 		dataDuration	= '3days', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 0, // Default interval for data to be displayed (in seconds)
 		dataColor	= '0000FF', // CSS HEX value of color to represent data (omit leading #)
