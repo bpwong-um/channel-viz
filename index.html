@@ -424,11 +424,11 @@
 
 <script>
   	
-	var feedID = 643150575;//var feedID = 966630999;
+	var feedID = 759708335;//var feedID = 966630999;
 
 	function updateTrigger()
 	{
-		xively.setKey( "POrYI0SaySTf9h9WbgCqQz09mkDVzSSE304KnLaYQAm4EGsu" );
+		xively.setKey( "GM0B7c60oQ3J7emJt7piSSkKz4YuixQroURgfd7MKDiZ3emw" );
 	  	xively.datastream.get(feedID, "trigger_sampler", function(datastream)
 
 		{
@@ -462,7 +462,7 @@
   
 	function updatePeriod()
 	{
-	  	xively.setKey( "k90yDadCzddtcCqkH0OY6db2dmetYL4gixoAOAVVmDTYDsw9" ); // key to r/w t_sample channel
+	  	xively.setKey( "GM0B7c60oQ3J7emJt7piSSkKz4YuixQroURgfd7MKDiZ3emw" ); // key to r/w t_sample channel
 	  	var number = document.DropDownPeriod.minutes.value;
 	  	
 	  	if (number > -9999) 
@@ -487,7 +487,7 @@
 
 	function updateEnable()
 	{
-	  	xively.setKey( "rGAI1WFMNsjiFREeXeI7n7LBa9IU3zyCK6cdZIIvwFMBcgcF" ); // key to r/w t_sample channel
+	  	xively.setKey( "GM0B7c60oQ3J7emJt7piSSkKz4YuixQroURgfd7MKDiZ3emw" ); // key to r/w t_sample channel
 	  	xively.datastream.get(feedID, "enable_sampler", function(datastream)
 
 		{
@@ -520,7 +520,7 @@
 
 	function getLock()
 	{
-		xively.setKey( "FeQZrQRD7JxwGQP7fsJFkpNRauohGWl9N10BjU6xd3PlEquw" ); // key to r/w lock channel
+		xively.setKey( "GM0B7c60oQ3J7emJt7piSSkKz4YuixQroURgfd7MKDiZ3emw" ); // key to r/w lock channel
 		xively.datastream.get(feedID, "lock", function(datastream){x = datastream["current_value"];alert(x)})
 	}
 
